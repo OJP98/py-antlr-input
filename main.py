@@ -99,8 +99,8 @@ if __name__ == "__main__":
 
     grammar_file = GetGrammarFile()
 
-    # start_rule = GetTextInput('Nombre de la regla principal:')
-    start_rule = 'program'
+    start_rule = GetTextInput('Nombre de la regla de inicio (para Decaf, es "program"):')
+    # start_rule = 'program'
 
     # Ask for the user to select the input file
     input_file = messagebox.askokcancel(
