@@ -1,0 +1,16 @@
+class Program {
+  int global1;
+  char global2;
+
+  int iniciar_variables(int param1, int param2) {
+    global1 = 1;
+    global2 = a;
+    return global1;
+  }
+
+  void main() {
+    int my_var1;
+    int my_var2;
+    my_result = iniciar_variables(param1, param2);
+  }
+}
