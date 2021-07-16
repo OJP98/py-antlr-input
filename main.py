@@ -1,8 +1,8 @@
 from tkinter import filedialog as fd, messagebox
 import os
 import platform
+import sys
 import tkinter as tk
-
 
 def SelectFile():
     return fd.askopenfilename()
@@ -87,6 +87,15 @@ def GetTextInput(label):
 
 if __name__ == "__main__":
 
+    grammar_name = None
+    if len(sys.argv) > 1:
+        first_argument = sys.argv[1]
+
+        if first_argument.lower() == 'decaf':
+            grammar_name = 'Decaf'
+            start_rule = 'program'
+            grammar_file = './Decaf/Decaf.g4'
+
     root = tk.Tk()
     root.withdraw()
 
@@ -103,22 +112,21 @@ if __name__ == "__main__":
         )
         exit()
 
-    grammar_name = GetTextInput('Nombre de la gramática: ')
+    if not grammar_name:
+        grammar_name = GetTextInput('Nombre de la gramática: ')
 
-    # Ask for the user to select the grammar file
-    grammar_box = messagebox.askokcancel(
-        title='Gramática',
-        message='Por favor, seleccione el archivo de gramática'
-    )
-    # exit out if he cancels
-    if not grammar_box:
-        exit()
+        # Ask for the user to select the grammar file
+        grammar_box = messagebox.askokcancel(
+            title='Gramática',
+            message='Por favor, seleccione el archivo de gramática'
+        )
+        # exit out if he cancels
+        if not grammar_box:
+            exit()
 
-    grammar_file = GetGrammarFile()
+        grammar_file = GetGrammarFile()
 
-    start_rule = GetTextInput(
-        'Nombre de la regla de inicio (para Decaf, es "program"):')
-    # start_rule = 'program'
+        start_rule = GetTextInput('Nombre de la regla de inicio:') 
 
     # Ask for the user to select the input file
     input_file = messagebox.askokcancel(
