@@ -1,9 +1,12 @@
 from tkinter import filedialog as fd, messagebox
 import os
+import platform
 import tkinter as tk
+
 
 def SelectFile():
     return fd.askopenfilename()
+
 
 def GetGrammarFile():
     # Get the grammar file for the user
@@ -13,11 +16,13 @@ def GetGrammarFile():
             title='Gramática',
             message='Por favor, seleccione el archivo de gramática'
         )
-        if not retry_box: exit()
+        if not retry_box:
+            exit()
         grammar_file = SelectFile()
 
     g_file = grammar_file
     return os.path.normpath(g_file)
+
 
 def GetTestFile():
     # Get the test file from the user
@@ -27,20 +32,30 @@ def GetTestFile():
             title='Archivo de Entrada',
             message='Por favor, seleccione el archivo de entrada'
         )
-        if not retry_box: exit()
+        if not retry_box:
+            exit()
         test_file = SelectFile()
 
     t_file = test_file
     return os.path.normpath(t_file)
+
 
 def CompileAndExecute(grammar_path, grammar_name, start_rule, file_path):
     g_command = f'antlr4 -o . -lib . {grammar_path}'
     j_command = f'javac *.java'
     t_command = f'grun {grammar_name} {start_rule} -gui {file_path}'
 
+    platform_name = platform.system()
+
+    if platform_name == 'Linux' or platform_name == 'Darwin':
+        g_command = f'java -jar /usr/local/lib/antlr-4.9.2-complete.jar -o . -lib . {grammar_path}'
+        j_command = f'javac *.java'
+        t_command = f'java org.antlr.v4.gui.TestRig {grammar_name} {start_rule} -gui {file_path}'
+
     os.system(g_command)
     os.system(j_command)
     os.system(t_command)
+
 
 def GetTextInput(label):
     master = tk.Tk()
@@ -57,7 +72,7 @@ def GetTextInput(label):
         width=50
     )
     text_input.pack()
-    
+
     button = tk.Button(
         master,
         text='Aceptar',
@@ -69,6 +84,7 @@ def GetTextInput(label):
 
     return text_input.get()
 
+
 if __name__ == "__main__":
 
     root = tk.Tk()
@@ -78,7 +94,7 @@ if __name__ == "__main__":
     requirements = messagebox.askyesno(
         title='Requerimientos',
         message='¿Está configurado java y ANTLR, junto con los comandos antlr4 y grun?')
-    
+
     # If he doesn't have them, then exit
     if not requirements:
         messagebox.showerror(
@@ -95,11 +111,13 @@ if __name__ == "__main__":
         message='Por favor, seleccione el archivo de gramática'
     )
     # exit out if he cancels
-    if not grammar_box: exit()
+    if not grammar_box:
+        exit()
 
     grammar_file = GetGrammarFile()
 
-    start_rule = GetTextInput('Nombre de la regla de inicio (para Decaf, es "program"):')
+    start_rule = GetTextInput(
+        'Nombre de la regla de inicio (para Decaf, es "program"):')
     # start_rule = 'program'
 
     # Ask for the user to select the input file
@@ -108,7 +126,8 @@ if __name__ == "__main__":
         message='Por favor, seleccione el archivo de entrada'
     )
     # exit out if he cancels
-    if not input_file: exit()
+    if not input_file:
+        exit()
 
     test_file = GetTestFile()
 
