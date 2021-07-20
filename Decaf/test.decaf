@@ -4,7 +4,7 @@ class Program {
 
   int iniciar_variables(int param1, int param2) {
     global1 = 1;
-    global2 = a;
+    global2 = 'a';
     return global1;
   }
 

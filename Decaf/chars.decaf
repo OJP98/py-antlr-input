@@ -1,0 +1,11 @@
+
+class Program {
+  char var1;
+
+  char nuevoChar() {
+    var1 = 'a';
+    return var1;
+  }
+
+  var1 = nuevoChar();
+}

@@ -4,7 +4,7 @@ DIGIT: [0-9] ;
 
 LETTER : ('a'..'z'|'A'..'Z'|'_') ;
 
-CHAR : LETTER;
+charito : LETTER ;
 
 id : LETTER ( LETTER | DIGIT )* ;
 
@@ -68,7 +68,7 @@ literal : int_literal | char_literal | bool_literal ;
 
 int_literal : num ;
 
-char_literal : '\'' CHAR '\'' ;
+char_literal : '\'' charito '\'' ;
 
 bool_literal : 'true' | 'false' ;
 
