@@ -50,7 +50,7 @@ expression : location
             | '(' expression ')'
             ;
 
-methodCall : id '(' arg (',' arg)* ')' ;
+methodCall : id '(' (arg (',' arg)*)* ')' ;
 
 arg : expression ;
 
