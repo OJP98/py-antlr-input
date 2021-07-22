@@ -43,14 +43,14 @@ def GetTestFile():
 def CompileAndExecute(grammar_path, grammar_name, start_rule, file_path):
     g_command = f'antlr4 -o . -lib . {grammar_path}'
     j_command = f'javac *.java'
-    t_command = f'grun {grammar_name} {start_rule} -gui {file_path}'
+    t_command = f'grun {grammar_name} {start_rule} -gui -tokens {file_path}'
 
     platform_name = platform.system()
 
     if platform_name == 'Linux' or platform_name == 'Darwin':
         g_command = f'java -jar /usr/local/lib/antlr-4.9.2-complete.jar -o . -lib . {grammar_path}'
         j_command = f'javac *.java'
-        t_command = f'java org.antlr.v4.gui.TestRig {grammar_name} {start_rule} -gui {file_path}'
+        t_command = f'java org.antlr.v4.gui.TestRig {grammar_name} {start_rule} -gui -tokens {file_path}'
 
     os.system(g_command)
     os.system(j_command)
