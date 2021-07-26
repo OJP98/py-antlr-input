@@ -16,7 +16,7 @@ declaration : structDeclaration | varDeclaration | methodDeclaration ;
 
 varDeclaration : varType id ';' | varType id '[' num ']' ';' ;
 
-structDeclaration : 'struct' id '{' varDeclaration* '}' ;
+structDeclaration : 'struct' id '{' varDeclaration* '}' ';'? ;
 
 varType : 'int' | 'char' | 'boolean' | 'struct' id | structDeclaration | 'void' ;
 
@@ -24,7 +24,7 @@ methodDeclaration : methodType id '(' (parameter (',' parameter)*)* ')' block ;
 
 methodType : 'int' | 'char' | 'boolean' | 'void' ;
 
-parameter : parameterType id | parameterType id '[' ']' ;
+parameter : parameterType id | parameterType id '[' ']' | 'void' ;
 
 parameterType : 'int' | 'char' | 'boolean' ;
 
@@ -58,7 +58,7 @@ op : arith_op | rel_op | eq_op | cond_op ;
 
 arith_op : '+' | '-' | '*' | '/' | '%' ;
 
-rel_op : '<' | '>' | '=' | '=' ;
+rel_op : '<' | '>' | '<=' | '>=' ;
 
 eq_op : '==' | '!=' ;
 
