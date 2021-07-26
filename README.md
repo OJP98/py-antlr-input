@@ -25,6 +25,30 @@ python ./main.py Decaf
 ```
 This will make the program only ask for the .decaf file you want to see the parser tree of.
 
+## Examples
+
+### Cow.decaf
+This file has a lot of defined rules covered. Here's the parse tree for the [code](./Decaf/cow.decaf):
+
+<p align="center">
+<img src="./images/cow_parse_tree.svg">
+</p>
+
+### test.decaf
+Just a regular test file. Useful when testing the grammar for the first time. Here's the [code](./Decaf/test.decaf)
+
+<p align="center">
+<img src="./images/test_parse_tree.svg">
+</p>
+
+### Error handling
+If there's just a small amount of errors, then the program will still render the parse tree with a bit of red highlighted where the code wasn't correcty specified. Make sure to check the terminal output for more details.
+
+<p align="center">
+<img src="./images/chars_err_parse_tree.svg">
+</p>
+
+
 ## Support
 This tools has support for both Windows and Unix based operative systems.
 
