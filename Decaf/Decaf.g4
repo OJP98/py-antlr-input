@@ -1,8 +1,8 @@
 grammar Decaf;
 
-DIGIT: [0-9] ;
+DIGIT: [0-9]+ ;
 
-LETTER : ('a'..'z'|'A'..'Z'|'_') ;
+LETTER : ('a'..'z'|'A'..'Z'|'_')+ ;
 
 charito : LETTER ;
 
@@ -44,6 +44,8 @@ location : (id | id '[' expression ']') ('.' location)? ;
 expression : location
             | methodCall
             | literal
+            | expression ('*' | '/') expression
+            | expression ('+' | '-') expression
             | expression op expression
             | '-' expression
             | '!' expression
@@ -56,7 +58,7 @@ arg : expression ;
 
 op : arith_op | rel_op | eq_op | cond_op ;
 
-arith_op : '+' | '-' | '*' | '/' | '%' ;
+arith_op : '*' | '/' | '+' | '-' | '%' ;
 
 rel_op : '<' | '>' | '<=' | '>=' ;
 

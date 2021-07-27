@@ -63,4 +63,12 @@ int InputInt(void)
 int ReturnNumber(void)
 {return z.a;}
 
+int Precedence(void)
+{
+	1+25*500;
+	(1+25)*200;
+	5*10/2;
+	2/10*5;
+}
+
 }
